@@ -15,7 +15,33 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Digite o primeiro valor: ");
+        int opcao;
+
+        System.out.print("|-----------------------------|\n");
+        System.out.println("     Menu da Calculadora:");
+        System.out.print("|-----------------------------|\n");
+        System.out.println("\n   1 - Iniciar Programa");
+        System.out.println("   2 - Sair");
+
+        opcao = scanner.nextInt();
+
+        switch (opcao) {
+            case 1:
+                entrarNaCalculadora();
+                break;
+            case 2:
+                System.out.println("\nSaindo da Calculadora.");
+                scanner.close();
+                break;
+            default:
+                System.out.println("\nOpção inválida. Tente novamente.");
+        }
+    }
+
+    private static void entrarNaCalculadora() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("\nDigite o primeiro valor: ");
         double valor1 = scanner.nextDouble();
 
         System.out.print("Digite o segundo valor: ");
@@ -28,7 +54,9 @@ public class Main {
 
         double resultado = calculadora.calcular(operacao);
 
-        System.out.println("Resultado da operação: " + resultado);
+        System.out.println("\nResultado da operação: " + resultado + "\n");
+
+        main(null);
 
         scanner.close();
     }
