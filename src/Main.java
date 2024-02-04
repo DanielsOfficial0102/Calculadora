@@ -1,56 +1,35 @@
+/*
+* Transformar a Calculadora em uma Classe
+* Faça um sistema que possui duas classes: Uma Principal, que terá função de front-end, e uma classe Calculadora, que terá PELO MENOS os métodos de soma, subtração, multiplicação e divisão.
+* Faça com que esses métodos sejam private, logo não poderão ser chamados diretamente pela classe Principal.
+* Haverá apenas um método public chamado calcular, que receberá 2 valores double e 1 valor char, e retornará um valor double como resultado da operação escolhida.
+* No interior desse método calcular estarão as chamadas para os métodos privados.
+* É proibido entrada e saída na classe Calculadora. Todas as entradas e saídas devem ser feitas somente na classe Principal, e nela terá apenas 1 objeto calculadora.
+*/
+
 import java.util.Scanner;
 
-class Calculadora {
+public class Main {
 
     public static void main(String[] args) {
 
-        Scanner input = new Scanner(System.in);
-        //Função para ler o que o Usuario irá colocar e interpretar
+        Scanner scanner = new Scanner(System.in);
 
-        int valor1, valor2, resultado = 0;
-        char operador;
+        System.out.print("Digite o primeiro valor: ");
+        double valor1 = scanner.nextDouble();
 
-        System.out.println("CALCULADORA\n");
+        System.out.print("Digite o segundo valor: ");
+        double valor2 = scanner.nextDouble();
 
-        System.out.print("Informe o primeiro valor: ");
-        valor1 = input.nextInt();
+        System.out.print("Digite a operação (+, -, *, /): ");
+        char operacao = scanner.next().charAt(0);
 
-        System.out.print("Informe a operação (+, -, *, /): ");
-        operador = input.next().charAt(0);
+        Calculadora calculadora = new Calculadora(valor1, valor2);
 
-        System.out.print("Informe o segundo valor: ");
-        valor2 = input.nextInt();
+        double resultado = calculadora.calcular(operacao);
 
-        switch(operador) {
-            //Switch uma forma de colocar varias condições sem precisar criar diversos IF & ELSE
+        System.out.println("Resultado da operação: " + resultado);
 
-            case '+':
-                resultado =  valor1 + valor2;
-                break;
-
-            case '-':
-                resultado =  valor1 - valor2;
-                break;
-
-            case '*':
-                resultado =  valor1 * valor2;
-                break;
-
-            case '/':
-                if(valor2 !=0) {
-                    resultado =  valor1 / valor2;
-                }else {
-                    System.out.println("Não é possível dividir por 0");
-                    System.exit(0);
-                }
-                break;
-
-            default:
-                System.out.println("Operador Inválido, use somente (+, -, *, /)");
-                //Condição caso o Usuario coloque algo que não está dentro do objetivo do programa
-        }
-        System.out.println("O resultado do seu cálculo é: " + resultado);
-
-        input.close();
+        scanner.close();
     }
 }
