@@ -41,20 +41,31 @@ public class Main {
     private static void entrarNaCalculadora() {
         Scanner scanner = new Scanner(System.in);
 
+        System.out.print("|-----------------------------|\n");
+
+        System.out.print("\nDigite a operação (+, -, *, /, r): ");
+        char operacao = scanner.next().charAt(0);
+
         System.out.print("\nDigite o primeiro valor: ");
         double valor1 = scanner.nextDouble();
 
-        System.out.print("Digite o segundo valor: ");
-        double valor2 = scanner.nextDouble();
+        // Valor padrão para a segunda entrada se ele entrar na operacao de Raiz Quadrada
+        double valor2 = 0;
 
-        System.out.print("Digite a operação (+, -, *, /): ");
-        char operacao = scanner.next().charAt(0);
+        //Caso a operação for diferente de R, ele seguirá lendo 2 entradas, diferente de quando com o R (Raiz quadrada) ele apenas lé o primeiro numero
+        if (operacao != 'r') {
+            System.out.print("Digite o segundo valor: ");
+            valor2 = scanner.nextDouble();
+        }
 
         Calculadora calculadora = new Calculadora(valor1, valor2);
 
-        double resultado = calculadora.calcular(operacao);
-
-        System.out.println("\nResultado da operação: " + resultado + "\n");
+        try {
+            double resultado = calculadora.calcular(operacao);
+            System.out.println("\nResultado da operação: " + resultado + "\n");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
 
         main(null);
 

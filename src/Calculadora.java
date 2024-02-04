@@ -3,6 +3,7 @@ public class Calculadora
         private double valor1;
         private double valor2;
 
+
         public Calculadora(double valor1, double valor2) {
             this.valor1 = valor1;
             this.valor2 = valor2;
@@ -29,6 +30,15 @@ public class Calculadora
             }
         }
 
+        private double raizQuadrada() {
+            if (valor1 >= 0) {
+                return Math.sqrt(valor1);
+            } else {
+                System.out.println("Erro: Não é possível calcular a raiz quadrada de um número negativo.");
+                return Double.NaN;
+            }
+        }
+
         public double calcular(char operacao) {
 
             switch (operacao) {
@@ -40,6 +50,8 @@ public class Calculadora
                     return multiplicacao();
                 case '/':
                     return divisao();
+                case 'r':
+                    return raizQuadrada();
                 default:
                     System.out.println("Operação inválida.");
                     return Double.NaN;
