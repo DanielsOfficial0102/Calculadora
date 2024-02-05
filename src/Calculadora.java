@@ -9,6 +9,7 @@ public class Calculadora
             this.valor2 = valor2;
         }
 
+        //metodos de calculos
         private double soma() {
             return valor1 + valor2;
         }
